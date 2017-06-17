@@ -58,48 +58,25 @@ LinkedList.prototype.AddToTail = function(value){
   this.tail = newNode;
 }
 
-// Adding DeleteFromHead ProtoType to LinkedList Constructor
-LinkedList.prototype.DeleteFromHead = function(){
-  // Check if LinkedList is Empty, if empty return null
- if(!this.head) return null;
-  // If Not null, store the value in val variable.
-  let val = this.head.value;
-  // Make current head's next as head pointer.
-  this.head = this.head.next
-  // if new head is not null, make head's prev as null
-  if(this.head) this.head.prev = null; 
-  // if new head is null, make tail also null
-  else this.tail = null;
-  return val;
-}
 
-// Adding DeleteFromTail ProtoType to LinkedList Constructor
-LinkedList.prototype.DeleteFromTail = function(){
-  // Check if LinkedList is Empty, if empty return null
-  if(!this.tail) return null;
-  // If Not null, store the value in val variable.
-  let val = this.tail.value;
-  // Make current tail's prev as tail pointer.
-  this.tail = this.tail.prev;
-  // if new tail is not null, make tail's next as null
-  if(this.tail) this.tail.next = null;
-  // if new tail is null, make head also null
-  else this.head = null;
-  return val;
-}
 
-// Adding Search ProtoType to LinkedList Constructor
-LinkedList.prototype.Search = function(Value){
+// Adding GetIndexValue ProtoType to LinkedList Constructor
+LinkedList.prototype.GetIndexValue = function(Value){
   // assing currentNode to head of LinkedList
   let currentNode = this.head;
-  // loop through LinkedList this currentNode is null.
+  // seting couter to 0, and initilizing empty array.
+  let counter = 0;
+  let nodeArr = [];
   while(currentNode){
-    // check if seach value === currentNode value, if true return value.
-    if(currentNode.value === Value) return currentNode.value;
+    // check if currentNode value === input value, if true push into array.
+    if(currentNode.value === Value){
+      nodeArr.push(counter);
+    }
     currentNode = currentNode.next;
+    counter++;
   }
-  // if value not found, return null
-  return null;
+  // return array.
+  return nodeArr;
 }
 
 // Creating Instance of Linked List
@@ -111,11 +88,10 @@ LL.AddToHead(200);
 LL.AddToHead(300);
 // Adding New Values to Tail Of Linked List
 LL.AddToTail(400);
-// Delete Value From Head
-LL.DeleteFromHead();
-// Delete Value fro Tail
-LL.DeleteFromTail();
-// Search Value For Linked List
-console.log(LL.Search(1000));
+LL.AddToTail(200);
 
-console.log(LL);
+console.log(LL.GetIndexValue(200));
+
+/* Output
+[1,4] 
+*/

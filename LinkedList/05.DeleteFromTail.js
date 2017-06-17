@@ -35,44 +35,6 @@ LinkedList.prototype.AddToHead = function(value){
   this.head = newNode;
 }
 
-// Adding AddToTail Prototype to Linked List Constructor
-LinkedList.prototype.AddToTail = function(value){
-  // this.tail as prev pram becaues, we are adding new node to tail. So the current tail becomes prev, and next is null becaues there is no next node as its the tail node.
-  let newNode = new Node(value,null, this.tail);
-  
-   /* adding node to linked list, two cases may occur, 
-  1. If Linked list is Empty
-  2. If Linked list is not Empty */
-  if(this.tail){
-    // case Linked list is not Empty
-    this.tail.next = newNode;
-  } else {
-     // case Linked list is Empty
-    this.head = newNode;
-  }
-  
-  /* adding node to tail irrespective of condition
-    for case linked list is not empty, the current tail pointer is set to old node, so need to set newnode as tail
-    for case linked list is empty, no tail is initilized yet, so need to set newnode as tail
-  */
-  this.tail = newNode;
-}
-
-// Adding DeleteFromHead ProtoType to LinkedList Constructor
-LinkedList.prototype.DeleteFromHead = function(){
-  // Check if LinkedList is Empty, if empty return null
- if(!this.head) return null;
-  // If Not null, store the value in val variable.
-  let val = this.head.value;
-  // Make current head's next as head pointer.
-  this.head = this.head.next
-  // if new head is not null, make head's prev as null
-  if(this.head) this.head.prev = null; 
-  // if new head is null, make tail also null
-  else this.tail = null;
-  return val;
-}
-
 // Adding DeleteFromTail ProtoType to LinkedList Constructor
 LinkedList.prototype.DeleteFromTail = function(){
   // Check if LinkedList is Empty, if empty return null
@@ -95,10 +57,7 @@ let LL = new LinkedList();
 LL.AddToHead(100);
 LL.AddToHead(200);
 LL.AddToHead(300);
-// Adding New Values to Tail Of Linked List
-LL.AddToTail(400);
-// Delete Value From Head
-LL.DeleteFromHead();
+
 // Delete Value fro Tail
 LL.DeleteFromTail();
 
